@@ -1,0 +1,104 @@
+parametros
+
+Valores padrão
+
+Antes do ES2015 era preciso definir o valor padrão verificando se o parametro estava undefined
+
+Pós ES2015, na definição do parametro podemos definir o valor padrão
+Ex funtion exponencial(array, num = 1)
+
+
+----
+
+Objeto arguments
+
+Um array com todos os parametros passados quando a função foi invocada
+
+ex
+function findMax() {
+    let max = -Infinity;
+
+    for(let i = 0; i < arguments.lenght; i++) {
+        if (arguments[i] > max) {
+            max = arguments[i];
+        }
+    }
+
+    return max;
+}
+
+// entrada: findMax(1,2,3,6,90,1)
+// saida:   90
+
+
+Podemos usar showArgs para debbugar argumentos
+
+ex
+function showArgs(){
+    return arguments;
+}
+
+Entrada: showArgs(1, 2, [2,3,4], "string")
+saida
+0: 1
+1: 2
+2: (3) [2,3,4]
+3: "string"
+
+
+----
+
+
+Arrays e Objetos
+
+Arrays
+
+Spread: uma forma de lidar separadamente com elementos de um array -> ... (tres pontinhos)
+
+function sum(x, y, z) {
+    return x + y + z;
+}
+
+const numbers = [1, 2, 3];
+
+console.log(sum(...numbers));
+
+Rest: Combina os argumentos em um array
+
+function confereTamanho(...args) {
+    console.log(args.lenght)
+}
+
+confereTamanho() // 0
+confereTamanho(1, 2) // 2
+confereTamanho(3, 4, 5) // 3
+
+
+Objetos
+
+
+Object Destructuring
+Filtrar objetos pelos dados que interessam
+
+const user = {
+    id: 42,
+    displayName: 'Gabriel',
+    fullName: {
+        firstName: 'Gabriel',
+        lastName: 'Fonseca'
+    }
+};
+
+function userId({id}) {
+    return id;
+}
+
+function getFullName({fullName: {firstName: first, lastName: last}}) {
+    return '${first} ${last}';
+}
+
+userId(user)
+// 42
+
+getFullName(user)
+// Gabriel Fonseca
